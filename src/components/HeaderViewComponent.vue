@@ -18,8 +18,8 @@
             </a>
           </div>
         </div>
-        <div class="col-lg-3">
-          <h3>Welcome:</h3>
+        <div class="col-lg-3" v-if="userStore.token">
+          <h3>Welcome:{{ userStore.user.name }}</h3>
         </div>
       </div>
     </div>
@@ -45,10 +45,10 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav mx-auto py-0">
           <router-link class="nav-item nav-link" to="/">Home</router-link>
-          <router-link class="nav-item nav-link" to="/taskIndex">View Tasks</router-link>
-          <button class="nav-item nav-link">Logout</button>
-          <router-link class="nav-item nav-link" to="/login">Login</router-link>
-          <router-link class="nav-item nav-link" to="/register">Register</router-link>
+          <router-link class="nav-item nav-link" to="/taskIndex" v-if="userStore.token">View Tasks</router-link>
+          <button class="nav-item nav-link" v-if="userStore.token">Logout</button>
+          <router-link class="nav-item nav-link" to="/login" v-if="!userStore.token">Login</router-link>
+          <router-link class="nav-item nav-link" to="/register" v-if="!userStore.token">Register</router-link>
          
         </div>
       </div>
@@ -58,7 +58,15 @@
 </template>
 
 <script>
-export default {};
+import { useAuthUser } from '../stores/auth';
+export default {
+  setup(){
+    let userStore=useAuthUser();
+    return{
+      userStore
+    };
+  }
+};
 </script>
 
 <style></style>
