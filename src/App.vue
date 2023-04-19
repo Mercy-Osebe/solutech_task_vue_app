@@ -1,15 +1,17 @@
 <template>
   <div>
-    <header-component></header-component>
+    <header-view-component></header-view-component>
+    
     <router-view></router-view>
   </div>
   
 </template>
 
 <script>
-import HeaderComponent from './components/HeaderComponent.vue'
+import HeaderViewComponent from './components/HeaderViewComponent.vue'
+
 export default {
-  components: { HeaderComponent },
+  components: {HeaderViewComponent },
 
 }
 </script>
