@@ -6,7 +6,7 @@
           <h3>task index page</h3>
         </div>
         <div>
-          <a class="btn btn-success" href=""> Create New Task</a>
+          <router-link to="/createTask" class="btn btn-success">Create New Task</router-link>
         </div>
       </div>
     </div>
