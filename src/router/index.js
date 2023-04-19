@@ -17,6 +17,16 @@ const router = createRouter({
       component: TaskIndex
     },
     {
+      path: '/showTask/:id',
+      name: 'showTask',
+      component: () => import('../views/task/ShowTask.vue')
+    },
+    {
+      path: '/editTask/:id/edit',
+      name: 'editTask',
+      component: () => import('../views/task/EditTask.vue')
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../views/auth/Login.vue')
