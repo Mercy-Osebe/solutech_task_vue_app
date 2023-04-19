@@ -5,7 +5,7 @@
         <h2>Edit Task</h2>
       </div>
       <div class="pull-right">
-        <a class="btn btn-primary" href=""> Back</a>
+        <router-link to="/taskIndex" class="btn btn-primary">Back</router-link>
       </div>
     </div>
   </div>

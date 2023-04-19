@@ -21,16 +21,14 @@
       <tr>
         <td>1</td>
         <td>name</td>
-        <td>
-          <a class="btn btn-info" href="">Show</a>
-
-          <a class="btn btn-primary" href="">Edit</a>
-
-          <a class="btn btn-danger" href="">Delete</a>
+        <td>         
+          <router-link to="/showTask/id" class="btn btn-info">Show</router-link>
+          <router-link to="/editTask/id/edit" class="btn btn-info">Edit</router-link>         
+          <button class="btn btn-danger">Delete</button>
         </td>
       </tr>
     </table>
-    <p class="text-center text-primary"><small>Tindar Farm</small></p>
+    <p class="text-center text-primary"><small>Solutech</small></p>
   </div>
 </template>
 
@@ -38,7 +36,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 a{
     margin: 5px;
 }

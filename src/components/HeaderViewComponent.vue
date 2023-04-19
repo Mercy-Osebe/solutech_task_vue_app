@@ -46,7 +46,6 @@
         <div class="navbar-nav mx-auto py-0">
           <router-link class="nav-item nav-link" to="/">Home</router-link>
           <router-link class="nav-item nav-link" to="/taskIndex">View Tasks</router-link>
-          <router-link class="nav-item nav-link" to="/taskIndex">View Tasks</router-link>
           <button class="nav-item nav-link">Logout</button>
           <router-link class="nav-item nav-link" to="/login">Login</router-link>
           <router-link class="nav-item nav-link" to="/register">Register</router-link>
