@@ -1,14 +1,11 @@
 <template>
-
-  <p v-if="errors.length">
+  <div class="container col-md-6">
+    <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
     <ul>
       <li v-for="error in errors">{{ error }}</li>
     </ul>
   </p>
-
-
-  <div class="container col-md-6">
     <form @submit.prevent="login()">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">

@@ -8,8 +8,8 @@
                     <img class="w-100" src="/src/assets/img/post03.jpg" alt="Image">
                     <div class="carousel-caption top-0 bottom-0 start-0 end-0 d-flex flex-column align-items-center justify-content-center">
                         <div class="text-start p-5" style="max-width: 900px;">
-                            <h3 class="text-white">Organic Vegetables</h3>
-                            <h1 class="display-1 text-white mb-md-4">Organic Vegetables For Healthy Life</h1>
+                            <h3 class="text-white">Task manager app </h3>
+                            <h1 class="display-1 text-white mb-md-4"> Manage your tasks easily</h1>
                             <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Explore</a>
                             <a href="" class="btn btn-secondary py-md-3 px-md-5">Contact</a>
                         </div>
