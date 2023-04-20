@@ -1,10 +1,12 @@
 import { defineStore } from "pinia";
 import { axiosAuthApi } from "../utilities/axiosConf";
+import { useStatusStore } from "./status";
 
 export const useTaskStore = defineStore("task", {
   state: () => {
     return {
       tasks: [],
+      statuses:[],
     };
   },
   getters: {},
@@ -19,7 +21,7 @@ export const useTaskStore = defineStore("task", {
         })
         .catch(console.error());
     },
-    async delete(id) {
+    async deleteTask(id) {
         await axiosAuthApi
           .delete(`task/${id}`)
           .then((res) => {

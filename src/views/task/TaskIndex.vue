@@ -36,7 +36,7 @@
           <router-link :to="`/editTask/${task.id}/edit`" class="btn btn-info"
             >Edit</router-link
           >
-          <button class="btn text-danger" @click="taskStore.delete(task.id)">Delete</button>
+          <button class="btn text-danger" @click="taskStore.deleteTask(task.id)">Delete</button>
         </td>
       </tr>
     </table>

@@ -15,6 +15,7 @@ export const useAuthUser = defineStore("auth", {
   getters: {},
   actions: {
     async registerUser() {
+      let taskStore = useTaskStore();
       await axiosApi
         .post("/register", this.user)
         .then((res) => {
@@ -22,6 +23,7 @@ export const useAuthUser = defineStore("auth", {
           this.user = res.data.user;
           this.token = res.data.token;
           alert(res.data.message);
+          taskStore.getTasks();
         })
         .catch((error) => {
           if (error.response) {
