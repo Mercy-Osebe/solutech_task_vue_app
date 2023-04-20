@@ -34,6 +34,7 @@ export default {
     return{
       userStore
     };
+
   },
   data() {
     return {

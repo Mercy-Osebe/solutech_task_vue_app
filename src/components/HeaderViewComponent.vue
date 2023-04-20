@@ -45,11 +45,31 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav mx-auto py-0">
           <router-link class="nav-item nav-link" to="/">Home</router-link>
-          <router-link class="nav-item nav-link" to="/taskIndex" v-if="userStore.token">View Tasks</router-link>
-          <button class="nav-item nav-link" v-if="userStore.token">Logout</button>
-          <router-link class="nav-item nav-link" to="/login" v-if="!userStore.token">Login</router-link>
-          <router-link class="nav-item nav-link" to="/register" v-if="!userStore.token">Register</router-link>
-         
+          <router-link
+            class="nav-item nav-link"
+            to="/taskIndex"
+            v-if="userStore.token"
+            >View Tasks</router-link
+          >
+          <button
+            class="nav-item nav-link"
+            v-if="userStore.token"
+            @click="logout()"
+          >
+            Logout
+          </button>
+          <router-link
+            class="nav-item nav-link"
+            to="/login"
+            v-if="!userStore.token"
+            >Login</router-link
+          >
+          <router-link
+            class="nav-item nav-link"
+            to="/register"
+            v-if="!userStore.token"
+            >Register</router-link
+          >
         </div>
       </div>
     </nav>
@@ -58,14 +78,22 @@
 </template>
 
 <script>
-import { useAuthUser } from '../stores/auth';
+import { useAuthUser } from "../stores/auth";
 export default {
-  setup(){
-    let userStore=useAuthUser();
-    return{
-      userStore
+  setup() {
+    let userStore = useAuthUser();
+    return {
+      userStore,
     };
-  }
+  },
+  methods: {
+    logout() {
+      setTimeout(() => {
+        this.userStore.logout();
+        this.$router.replace("/");
+      }, 1000);
+    },
+  },
 };
 </script>
 

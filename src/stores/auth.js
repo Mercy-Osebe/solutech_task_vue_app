@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
-import { axiosApi } from "../utilities/axiosConf";
+import { axiosApi, axiosAuthApi } from "../utilities/axiosConf";
+import { useTaskStore } from "./task";
 export const useAuthUser = defineStore("auth", {
   state: () => {
     return {
@@ -28,7 +29,6 @@ export const useAuthUser = defineStore("auth", {
             console.log(error.response.status);
             console.log(error.response.headers);
           } else if (error.request) {
-
             console.log(error.request);
           } else {
             // Something happened in setting up the request that triggered an Error
@@ -38,13 +38,16 @@ export const useAuthUser = defineStore("auth", {
         });
     },
     async loginUser() {
-        await axiosApi
+      let taskStore = useTaskStore();
+      await axiosApi
         .post("/login", this.user)
         .then((res) => {
           console.log(res);
           this.user = res.data.user;
           this.token = res.data.token;
           alert(res.data.message);
+          // calling the rask crore immediately after login
+          taskStore.getTasks();
         })
         .catch((error) => {
           if (error.response) {
@@ -52,7 +55,6 @@ export const useAuthUser = defineStore("auth", {
             console.log(error.response.status);
             console.log(error.response.headers);
           } else if (error.request) {
-
             console.log(error.request);
           } else {
             // Something happened in setting up the request that triggered an Error
@@ -60,7 +62,13 @@ export const useAuthUser = defineStore("auth", {
           }
           console.log(error.config);
         });
+    },
+    async logout() {
+      await axiosAuthApi.post("logout").then((res) => {
+        this.token = "";
+        alert(res.data.message);
         
+      });
     },
   },
 });

@@ -11,18 +11,20 @@
               class="form-control"
               v-model="task.name"
             />
+            <strong>{{ errors.name }}</strong>
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
             <strong>Description:</strong>
             <textarea
+            class="form-control"
               name="description"
               id="description"
-              cols="38"
               rows="6"
               v-model="task.description"
             ></textarea>
+            <strong>{{ errors.description }}</strong>
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -41,10 +43,12 @@
                 v-model="task.status_id"
                 :value="status.id"
               />
+             
               <label class="form-check-label" :for="status.id">
                 {{ status.name }}
               </label>
             </div>
+             <strong>{{ errors.status_id }}</strong>
           </div>
         </div>
 
@@ -55,6 +59,7 @@
         </div>
       </div>
     </form>
+    <p>{{ errors }}</p>
   </div>
 </template>
 
@@ -75,6 +80,7 @@ export default {
         description: "",
         status_id: "",
       },
+      errors:[],
     };
   },
   created() {
@@ -87,9 +93,11 @@ export default {
         .post("task/create", this.task)
         .then((res) => {
           console.log(res);
+          this.$router.replace('/taskIndex');
         })
         .catch((error) => {
           console.log(error);
+          this.errors=error.response.data.errors;
         })
     },
   },
