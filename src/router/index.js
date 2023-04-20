@@ -47,17 +47,16 @@ const router = createRouter({
       component: () => import("../views/auth/Register.vue"),
       meta: { requiresUnauth: true },
     },
+    { path: "/:pathMatch(.*)*", component: Home },
   ],
 });
 router.beforeEach(function (to, _, next) {
   if (to.meta.requiresAuth && !useAuthUser.token) {
-    next('/login')
-  }
-  else if (to.meta.requiresUnauth && useAuthUser.token) {
-    next('/taskIndex')
-  }
-  else{
-    next()
+    next("/login");
+  } else if (to.meta.requiresUnauth && useAuthUser.token) {
+    next("/taskIndex");
+  } else {
+    next();
   }
 });
 

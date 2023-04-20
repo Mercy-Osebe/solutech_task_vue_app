@@ -19,6 +19,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-3">
             <button class="btn btn-primary">Login</button>
+            <router-link to="/register">Register instead</router-link>
           </div>
         </div>
       </div>
