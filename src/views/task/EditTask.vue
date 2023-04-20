@@ -6,6 +6,7 @@
       </div>
       <div class="pull-right">
         <router-link to="/taskIndex" class="btn btn-primary">Back</router-link>
+        <span>Task Duration{{ taskDuration }}</span>
       </div>
     </div>
   </div>
@@ -69,20 +70,6 @@
             <strong>{{ errors.remarks }}</strong>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-          <div class="form-group">
-            <strong>Choose Due date:</strong>
-            <input
-              type="date"
-              id="due_date"
-              name="due_date"
-              class="responsive-input"
-              v-model="task.due_date"
-            />
-
-            <strong>{{ errors.due_date }}</strong>
-          </div>
-        </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-3">
@@ -112,14 +99,14 @@ export default {
         name: "",
         description: "",
         status_id: "",
-        due_date: "",
         remarks: "",
       },
       errors: [],
       taskData:{
         remarks: "",
         
-      }
+      },
+      taskDuration:null
     };
   },
   created(){
@@ -135,6 +122,7 @@ export default {
         console.log(res);
         this.task = res.data.task;
         this.taskData=res.data.userTask;
+        this.taskDuration=res.data.taskDuration;
       });
     },
     async editTask() {
