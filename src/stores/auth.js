@@ -12,7 +12,14 @@ export const useAuthUser = defineStore("auth", {
       token: "",
     };
   },
-  getters: {},
+  getters: {
+    getUser(state){
+      return state.user;
+    },
+    getToken(state){
+      return state.token;
+    }
+  },
   actions: {
     async registerUser() {
       let taskStore = useTaskStore();

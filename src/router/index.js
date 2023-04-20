@@ -50,14 +50,14 @@ const router = createRouter({
     { path: "/:pathMatch(.*)*", component: Home },
   ],
 });
-router.beforeEach(function (to, _, next) {
-  if (to.meta.requiresAuth && !useAuthUser.token) {
-    next("/login");
-  } else if (to.meta.requiresUnauth && useAuthUser.token) {
-    next("/taskIndex");
-  } else {
-    next();
-  }
-});
+// router.beforeEach(function (to, _, next) {
+//   if (to.meta.requiresAuth) {
+//     next("/taskIndex");
+//   } else if (to.meta.requiresUnauth && !useAuthUser) {
+//     next("/login");
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;
