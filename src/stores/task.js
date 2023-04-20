@@ -19,5 +19,17 @@ export const useTaskStore = defineStore("task", {
         })
         .catch(console.error());
     },
+    async delete(id) {
+        await axiosAuthApi
+          .delete(`task/${id}`)
+          .then((res) => {
+            confirm('are you sure you want to delete this item?')
+            console.log(res);
+            this.tasks = res.data.tasks;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },
   },
 });

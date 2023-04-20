@@ -18,7 +18,7 @@
           <div class="form-group">
             <strong>Description:</strong>
             <textarea
-            class="form-control"
+              class="form-control"
               name="description"
               id="description"
               rows="6"
@@ -43,12 +43,39 @@
                 v-model="task.status_id"
                 :value="status.id"
               />
-             
+
               <label class="form-check-label" :for="status.id">
                 {{ status.name }}
               </label>
             </div>
-             <strong>{{ errors.status_id }}</strong>
+            <strong>{{ errors.status_id }}</strong>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="form-group">
+            <strong>Remarks:</strong>
+            <textarea
+              class="form-control"
+              name="remarks"
+              id="remarks"
+              rows="6"
+              v-model="task.remarks"
+            ></textarea>
+            <strong>{{ errors.remarks }}</strong>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="form-group">
+            <strong>Choose Due date:</strong>
+            <input
+              type="date"
+              id="due_date"
+              name="due_date"
+              v-model="task.due_date"
+              class="responsive-input"
+            />
+
+            <strong>{{ errors.due_date }}</strong>
           </div>
         </div>
 
@@ -59,7 +86,6 @@
         </div>
       </div>
     </form>
-    <p>{{ errors }}</p>
   </div>
 </template>
 
@@ -79,8 +105,10 @@ export default {
         name: "",
         description: "",
         status_id: "",
+        remarks: "",
+        due_date:"",
       },
-      errors:[],
+      errors: [],
     };
   },
   created() {
@@ -93,15 +121,32 @@ export default {
         .post("task/create", this.task)
         .then((res) => {
           console.log(res);
-          this.$router.replace('/taskIndex');
+          this.$router.replace("/taskIndex");
         })
         .catch((error) => {
           console.log(error);
-          this.errors=error.response.data.errors;
-        })
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.responsive-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+  .responsive-input {
+    width: auto;
+    max-width: none;
+  }
+}
+
+</style>

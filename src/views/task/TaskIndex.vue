@@ -24,17 +24,19 @@
       </tr>
       <!-- loop through the tasks -->
       <tr v-for="task in taskStore.tasks" :key="task.id">
-        <td>{{task.id}}</td>
-        <td>{{task.name}}</td>
-        <td>{{task.description}}</td>
-        <td>{{task.status_id}}</td>
-        <td>{{task.due_date}}</td>
+        <td>{{ task.id }}</td>
+        <td>{{ task.name }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.status_id }}</td>
+        <td>{{ task.due_date }}</td>
         <td>
-          <router-link to="/showTask/id" class="btn btn-info">Show</router-link>
-          <router-link to="/editTask/id/edit" class="btn btn-info"
+          <router-link :to="`/showTask/${task.id}`" class="btn btn-info"
+            >Show</router-link
+          >
+          <router-link :to="`/editTask/${task.id}/edit`" class="btn btn-info"
             >Edit</router-link
           >
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn text-danger" @click="taskStore.delete(task.id)">Delete</button>
         </td>
       </tr>
     </table>
@@ -51,9 +53,11 @@ export default {
       taskStore,
     };
   },
-  created(){
+  created() {
     this.taskStore.getTasks();
-  }
+  },
+  methods: {
+  },
 };
 </script>
 
