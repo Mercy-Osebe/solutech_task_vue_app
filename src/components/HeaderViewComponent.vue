@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="col-lg-3" v-if="userStore.token">
-          <h3>Welcome:{{ userStore.user.name }}</h3>
+          <h3>Welcome:{{ userStore.loggedInUserDetails.name }}</h3>
         </div>
       </div>
     </div>

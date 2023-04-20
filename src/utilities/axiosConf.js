@@ -23,4 +23,8 @@ axiosAuthApi.interceptors.request.use((config) => {
   }
   return config;
 });
-export { axiosAuthApi, axiosApi };
+
+const getErrorMessageFromList = (list) => {
+  return list.join("\n")
+}
+export { axiosAuthApi, axiosApi, getErrorMessageFromList};

@@ -5,7 +5,7 @@
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="src/assets/img/post03.jpg" alt="Image">
+                    <img class="w-100" src="/src/assets/img/post03.jpg" alt="Image">
                     <div class="carousel-caption top-0 bottom-0 start-0 end-0 d-flex flex-column align-items-center justify-content-center">
                         <div class="text-start p-5" style="max-width: 900px;">
                             <h3 class="text-white">Organic Vegetables</h3>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="src/assets/img/home-background.jpg" alt="Image">
+                    <img class="w-100" src="/src/assets/img/home-background.jpg" alt="Image">
                     <div class="carousel-caption top-0 bottom-0 start-0 end-0 d-flex flex-column align-items-center justify-content-center">
                         <div class="text-start p-5" style="max-width: 900px;">
                             <h3 class="text-white">Organic Fruits</h3>

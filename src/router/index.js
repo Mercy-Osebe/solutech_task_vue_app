@@ -51,9 +51,10 @@ const router = createRouter({
   ],
 });
 router.beforeEach(function (to, _, next) {
-  if (to.meta.requiresAuth && !useAuthUser.token) {
+  const userStore = useAuthUser();
+  if (to.meta.requiresAuth && !userStore.token) {
     next("/login");
-  } else if (to.meta.requiresUnauth && useAuthUser.token) {
+  } else if (to.meta.requiresUnauth && userStore.token) {
     next("/taskIndex");
   } else {
     next();
