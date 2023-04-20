@@ -8,6 +8,7 @@ const axiosApi = axios.create({
     Accept: "application/json",
   },
 });
+
 const axiosAuthApi = axios.create({
   baseURL: "http://127.0.0.1:8000/api/",
   headers: {
@@ -15,6 +16,7 @@ const axiosAuthApi = axios.create({
     Accept: "application/json",
   },
 });
+
 axiosAuthApi.interceptors.request.use((config) => {
   const userStore = useAuthUser();
   const token = userStore.token;
@@ -25,6 +27,10 @@ axiosAuthApi.interceptors.request.use((config) => {
 });
 
 const getErrorMessageFromList = (list) => {
+  if(!Boolean(list))
+  {
+    return "";
+  }
   return list.join("\n")
 }
 export { axiosAuthApi, axiosApi, getErrorMessageFromList};

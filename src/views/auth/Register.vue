@@ -61,12 +61,7 @@ import { useAuthUser } from '../../stores/auth';
 import { axiosApi, getErrorMessageFromList } from '../../utilities/axiosConf';
 
 export default {
-  setup() {
-    let userStore=useAuthUser();
-    return{
-      userStore
-    };
-  },
+
   data() {
     return {
       user: {
@@ -81,11 +76,6 @@ export default {
   methods: {
     register(){
       this.registerUser()
-      // this.userStore.user=this.user;
-      // this.userStore.registerUser();
-      // this.$router.replace('/taskIndex');
-
-
     },
     registerUser() {
       this.errors = [];

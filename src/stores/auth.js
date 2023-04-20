@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import { axiosApi, axiosAuthApi } from "../utilities/axiosConf";
-import { useTaskStore } from "./task";
+import { axiosAuthApi } from "../utilities/axiosConf";
+
 export const useAuthUser = defineStore("auth", {
   state: () => {
     return {

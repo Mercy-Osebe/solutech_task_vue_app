@@ -11,20 +11,20 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
             <strong>Email:</strong>
-            <input type="email" name="email" class="form-control" autocomplete="email"
+            <input type="email" name="email" class="form-control" autocomplete="email" data-cy="username"
             v-model="user.email"/>
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
             <strong>Password:</strong>
-            <input type="password" name="password" class="form-control" autocomplete="current-password"
+            <input type="password" name="password" class="form-control" autocomplete="current-password" data-cy="password"
             v-model="user.password"/>
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-3">
-            <button class="btn btn-primary">Login</button>
+            <button class="btn btn-primary" data-cy="loginButton">Login</button>
             <router-link to="/register">Register instead</router-link>
           </div>
         </div>
@@ -38,13 +38,6 @@ import { useAuthUser } from '../../stores/auth';
 import { axiosApi, getErrorMessageFromList } from '../../utilities/axiosConf';
 
 export default {
-  setup(){
-    let userStore = useAuthUser();
-    return{
-      userStore
-    };
-
-  },
   data() {
     return {
       user: {
@@ -56,7 +49,6 @@ export default {
   },
   methods: {
     login(){
-      this.userStore.user = this.user;
       this.loginUser();
     },
 
@@ -67,7 +59,6 @@ export default {
         .then((res) => {
           console.log(res)
           this.user = res.data.user;
-          this.token = res.data.token;
           let userStore = useAuthUser();
           userStore.updateToken(res.data.token)
           userStore.updateUserDetails(res.data.user)
@@ -77,6 +68,7 @@ export default {
           // taskStore.getTasks();
         })
         .catch((error) => {
+          console.log(error)
           const response = error.response;
 
           if (response.status == 422) {
