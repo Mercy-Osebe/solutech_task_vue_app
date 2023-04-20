@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" v-if="taskStore.tasks.length > 0">
       <tr>
         <th>No</th>
         <th>Name</th>
@@ -36,10 +36,16 @@
           <router-link :to="`/editTask/${task.id}/edit`" class="btn btn-info"
             >Edit</router-link
           >
-          <button class="btn text-danger" @click="taskStore.deleteTask(task.id)">Delete</button>
+          <button
+            class="btn text-danger"
+            @click="taskStore.deleteTask(task.id)"
+          >
+            Delete
+          </button>
         </td>
       </tr>
     </table>
+    <h1 class="text-danger" v-else>Tasks loading...</h1>
     <p class="text-center text-primary"><small>Solutech</small></p>
   </div>
 </template>
@@ -47,6 +53,7 @@
 <script>
 import { useTaskStore } from "../../stores/task";
 export default {
+  inject: ["userStore"],
   setup() {
     let taskStore = useTaskStore();
     return {
@@ -56,8 +63,7 @@ export default {
   created() {
     this.taskStore.getTasks();
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 

@@ -93,6 +93,7 @@
 import { useStatusStore } from "../../stores/status";
 import { axiosAuthApi } from "../../utilities/axiosConf";
 export default {
+  inject:['userStore'],
   setup() {
     let statusStore = useStatusStore();
     return {

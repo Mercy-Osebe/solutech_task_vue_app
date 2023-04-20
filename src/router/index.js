@@ -50,6 +50,7 @@ const router = createRouter({
     { path: "/:pathMatch(.*)*", component: Home },
   ],
 });
+
 router.beforeEach(function (to, _, next) {
   const userStore = useAuthUser();
   if (to.meta.requiresAuth && !userStore.token) {

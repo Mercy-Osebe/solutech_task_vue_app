@@ -6,6 +6,7 @@
       </div>
       <div class="pull-right">
         <router-link to="/taskIndex" class="btn btn-primary">Back</router-link>
+        <span>Task Duration{{ taskDuration }}</span>
       </div>
     </div>
   </div>
@@ -18,7 +19,7 @@
             <strong>Name:</strong>
             <input type="text" name="name" class="form-control" 
             v-model="task.name"/>
-            <strong></strong>
+            <strong>{{ errors.name }}</strong>
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -31,7 +32,7 @@
               rows="6"
               v-model="task.description"
             ></textarea>
-            <strong></strong>
+            <strong>{{ errors.description }}</strong>
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -53,7 +54,7 @@
 
               <label class="form-check-label"> {{status.name}} </label>
             </div>
-            <strong></strong>
+            <strong>{{ errors.name }}</strong>
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -66,21 +67,7 @@
               rows="6"
               v-model="task.remarks"
             ></textarea>
-            <strong></strong>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-          <div class="form-group">
-            <strong>Choose Due date:</strong>
-            <input
-              type="date"
-              id="due_date"
-              name="due_date"
-              class="responsive-input"
-              v-model="task.due_date"
-            />
-
-            <strong></strong>
+            <strong>{{ errors.remarks }}</strong>
           </div>
         </div>
 
@@ -113,9 +100,13 @@ export default {
         description: "",
         status_id: "",
         remarks: "",
-        due_date: "",
       },
       errors: [],
+      taskData:{
+        remarks: "",
+        
+      },
+      taskDuration:null
     };
   },
   created(){
@@ -130,6 +121,8 @@ export default {
       await axiosAuthApi.get(`task/${id}`).then((res) => {
         console.log(res);
         this.task = res.data.task;
+        this.taskData=res.data.userTask;
+        this.taskDuration=res.data.taskDuration;
       });
     },
     async editTask() {
@@ -139,9 +132,11 @@ export default {
         .then((res) => {
           confirm("are you sure you want to edit this item?");
           console.log(res);
+          this.$router.replace("/taskIndex");
         })
         .catch((error) => {
           console.log(error);
+          // this.errors = error.response.data.errors;
         });
     },
   },

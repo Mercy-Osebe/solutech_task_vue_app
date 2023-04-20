@@ -15,6 +15,14 @@ export const useAuthUser = defineStore("auth", {
   },
   getters: {},
 
+  getters: {
+    getUser(state){
+      return state.user;
+    },
+    getToken(state){
+      return state.token;
+    }
+  },
   actions: {
     updateToken(token) {
       this.token = token
