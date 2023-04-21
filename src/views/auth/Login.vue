@@ -36,6 +36,7 @@
 <script>
 import { useAuthUser } from '../../stores/auth';
 import { axiosApi, getErrorMessageFromList } from '../../utilities/axiosConf';
+import { saveLocalStorageWithKey } from '../../utilities/useLocalStorage';
 
 export default {
   data() {
@@ -62,7 +63,9 @@ export default {
           let userStore = useAuthUser();
           userStore.updateToken(res.data.token)
           userStore.updateUserDetails(res.data.user)
-          console.log("Saved token ", userStore.token)
+
+          saveLocalStorageWithKey('user-token', res.data.token)
+          saveLocalStorageWithKey('user-details', res.data.user)
           this.$router.replace('/taskIndex');
           // calling the rask crore immediately after login
           // taskStore.getTasks();

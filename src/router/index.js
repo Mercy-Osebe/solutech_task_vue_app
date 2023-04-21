@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import TaskIndex from "../views/task/TaskIndex.vue";
-import { useAuthUser } from "../stores/auth";
+import { getLocalStorageFromKey } from "../utilities/useLocalStorage";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,15 +47,15 @@ const router = createRouter({
       component: () => import("../views/auth/Register.vue"),
       meta: { requiresUnauth: true },
     },
-    { path: "/:pathMatch(.*)*", component: Home },
+    { path: '/:catchAll(.*)', component: Home },
   ],
 });
 
 router.beforeEach(function (to, _, next) {
-  const userStore = useAuthUser();
-  if (to.meta.requiresAuth && !userStore.token) {
+  const token  = getLocalStorageFromKey('user-token')
+  if (to.meta.requiresAuth && !Boolean(token)) {
     next("/login");
-  } else if (to.meta.requiresUnauth && userStore.token) {
+  } else if (to.meta.requiresUnauth && token) {
     next("/taskIndex");
   } else {
     next();

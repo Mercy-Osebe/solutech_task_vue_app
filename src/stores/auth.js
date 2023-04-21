@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { axiosAuthApi } from "../utilities/axiosConf";
+import { saveLocalStorageWithKey } from "../utilities/useLocalStorage";
 
 export const useAuthUser = defineStore("auth", {
   state: () => {
@@ -34,6 +35,8 @@ export const useAuthUser = defineStore("auth", {
     async logout() {
       await axiosAuthApi.post("logout").then((res) => {
         this.token = "";
+        saveLocalStorageWithKey('user-token', undefined)
+        saveLocalStorageWithKey('user-details', undefined)
         alert(res.data.message);
         
       });

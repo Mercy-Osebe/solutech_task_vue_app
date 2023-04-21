@@ -79,12 +79,21 @@
 
 <script>
 import { useAuthUser } from "../stores/auth";
+import { getLocalStorageFromKey } from '../utilities/useLocalStorage';
 export default {
   setup() {
     let userStore = useAuthUser();
     return {
       userStore,
     };
+  },
+
+  mounted() {
+    const userDetails = getLocalStorageFromKey("user-details")
+    const token = getLocalStorageFromKey("user-token")
+    
+    this.userStore.updateUserDetails(userDetails)
+    this.userStore.updateToken(token)
   },
   methods: {
     logout() {

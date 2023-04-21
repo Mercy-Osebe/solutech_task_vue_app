@@ -45,7 +45,7 @@
         </td>
       </tr>
     </table>
-    <h1 class="text-danger" v-else>Tasks loading...</h1>
+    <h1 class="text-danger" v-else>No tasks found </h1>
     <p class="text-center text-primary"><small>Solutech</small></p>
   </div>
 </template>

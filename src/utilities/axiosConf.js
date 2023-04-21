@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useAuthUser } from "../stores/auth";
+import { getLocalStorageFromKey } from "./useLocalStorage";
 
 
 const BASEURL = 'http://74.235.75.24/solutech_task_app/public/api/';
@@ -19,8 +20,7 @@ const axiosAuthApi = axios.create({
 });
 
 axiosAuthApi.interceptors.request.use((config) => {
-  const userStore = useAuthUser();
-  const token = userStore.token;
+  const token = getLocalStorageFromKey("user-token")
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }

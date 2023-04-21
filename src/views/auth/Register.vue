@@ -90,7 +90,7 @@ export default {
           console.log("Saved token ", userStore.token)
           /** sample token => 2|c5JxFSRzwHlTY3y2R0KYxiPivpD4VCuP9RKhJCfV */
           alert(res.data.message);
-          taskStore.getTasks();
+          this.$router.replace('/taskIndex');
         })
         .catch((error) => {
           const response = error.response;
