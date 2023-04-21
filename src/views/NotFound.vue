@@ -1,5 +1,5 @@
 <template>
-  <div>
+ <div class="container col-md-6">
     <div class="card">
       <div class="card-header">Page not found</div>
       <div class="card-body">
