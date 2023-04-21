@@ -32,7 +32,7 @@
             <strong>Set Status:</strong>
             <div
               class="form-check"
-              v-for="status in statusStore.statuses"
+              v-for="status in statuses"
               :key="status.id"
             >
               <input
@@ -90,16 +90,8 @@
 </template>
 
 <script>
-import { useStatusStore } from "../../stores/status";
 import { axiosAuthApi } from "../../utilities/axiosConf";
 export default {
-  inject:['userStore'],
-  setup() {
-    let statusStore = useStatusStore();
-    return {
-      statusStore,
-    };
-  },
   data() {
     return {
       task: {
@@ -110,11 +102,16 @@ export default {
         due_date:"",
       },
       errors: [],
+      statuses: []
     };
   },
-  created() {
-    console.log("hello");
-    console.log(this.statusStore.getStatusData());
+  mounted() {
+    axiosAuthApi.get("/statuses").then((res) => {
+        console.log(res);
+        this.statuses = res.data.statuses;
+      }).catch(error=>{
+        console.log(error)
+      }) ;
   },
   methods: {
     async addTask() {

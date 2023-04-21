@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { axiosAuthApi } from "../utilities/axiosConf";
-import { useStatusStore } from "./status";
 import { useAuthUser } from "./auth";
 
 export const useTaskStore = defineStore("task", {
