@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useAuthUser } from "../stores/auth";
 
+
+const BASEURL = 'http://74.235.75.24/solutech_task_app/public/api/';
+//const BASEURL = 'http://localhost/solutech_task_app/public/api/';
+
 const axiosApi = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
-  headers: {
-    "Content-Type": "Application/json",
-    Accept: "application/json",
-  },
+  baseURL: BASEURL,
+  headers: { "Content-Type": "Application/json", Accept: "application/json", },
 });
 
 const axiosAuthApi = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
+  baseURL: BASEURL,
   headers: {
     "Content-Type": "Application/json",
     Accept: "application/json",
