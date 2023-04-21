@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import TaskIndex from "../views/task/TaskIndex.vue";
 import { getLocalStorageFromKey } from "../utilities/useLocalStorage";
+import NotFound from "../views/NotFound.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,7 +48,7 @@ const router = createRouter({
       component: () => import("../views/auth/Register.vue"),
       meta: { requiresUnauth: true },
     },
-    { path: '/:catchAll(.*)', component: Home },
+    { path: '/:catchAll(.*)', component: NotFound },
   ],
 });
 
