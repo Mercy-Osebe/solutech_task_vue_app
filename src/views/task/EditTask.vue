@@ -17,8 +17,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
             <strong>Name:</strong>
-            <input type="text" name="name" class="form-control" 
-            v-model="task.name"/>
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              v-model="task.name"
+            />
             <strong>{{ errors.name }}</strong>
           </div>
         </div>
@@ -38,11 +42,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="form-group">
             <strong>Set Status:</strong>
-            <div
-              class="form-check"
-              v-for="status in statuses"
-              :key="status.id"
-            >
+            <div class="form-check" v-for="status in statuses" :key="status.id">
               <input
                 class="form-check-input"
                 type="radio"
@@ -52,7 +52,7 @@
                 :value="status.id"
               />
 
-              <label class="form-check-label"> {{status.name}} </label>
+              <label class="form-check-label"> {{ status.name }} </label>
             </div>
             <strong>{{ errors.name }}</strong>
           </div>
@@ -73,9 +73,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-3">
-            <button class="btn btn-primary">
-              Edit Task
-            </button>
+            <button class="btn btn-primary">Edit Task</button>
           </div>
         </div>
       </div>
@@ -86,7 +84,6 @@
 <script>
 import { axiosAuthApi } from "../../utilities/axiosConf";
 export default {
-
   data() {
     return {
       task: {
@@ -97,23 +94,24 @@ export default {
       },
       errors: [],
       statuses: [],
-      taskData:{
+      taskData: {
         remarks: "",
-        
       },
-      taskDuration:null
+      taskDuration: null,
     };
   },
-  mounted(){
-    axiosAuthApi.get("/statuses").then((res) => {
+  mounted() {
+    axiosAuthApi
+      .get("/statuses")
+      .then((res) => {
         console.log(res);
         this.statuses = res.data.statuses;
-      }).catch(error=>{
-        console.log(error)
-      }) ;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-      this.getTask();
-
+    this.getTask();
   },
   methods: {
     async getTask() {
@@ -121,23 +119,26 @@ export default {
       await axiosAuthApi.get(`task/${id}`).then((res) => {
         console.log(res);
         this.task = res.data.task;
-        this.taskData=res.data.userTask;
-        this.taskDuration=res.data.taskDuration;
+        this.taskData = res.data.userTask;
+        this.taskDuration = res.data.taskDuration;
+        /* update remark */
+        this.task.remarks = this.taskData.remarks;
       });
     },
     async editTask() {
-      let id = this.$route.params.id;
-      await axiosAuthApi
-        .put(`task/${id}/edit`,this.task)
-        .then((res) => {
-          confirm("are you sure you want to edit this item?");
-          console.log(res);
-          this.$router.replace("/taskIndex");
-        })
-        .catch((error) => {
-          console.log(error);
-          // this.errors = error.response.data.errors;
-        });
+      if (confirm("are you sure you want to edit this item?")) {
+        let id = this.$route.params.id;
+        await axiosAuthApi
+          .put(`task/${id}/edit`, this.task)
+          .then((res) => {
+            console.log(res);
+            this.$router.replace("/taskIndex");
+          })
+          .catch((error) => {
+            console.log(error);
+            this.errors = error.response.data.errors;
+          });
+      }
     },
   },
 };

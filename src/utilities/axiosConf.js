@@ -1,10 +1,9 @@
 import axios from "axios";
-import { useAuthUser } from "../stores/auth";
 import { getLocalStorageFromKey } from "./useLocalStorage";
 
 
 const BASEURL = 'http://74.235.75.24/solutech_task_app/public/api/';
-//const BASEURL = 'http://localhost/solutech_task_app/public/api/';
+// const BASEURL = 'http://localhost/solutech_task_app/public/api/';
 
 const axiosApi = axios.create({
   baseURL: BASEURL,
